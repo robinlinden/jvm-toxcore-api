@@ -10,19 +10,19 @@ abstract class IntCompanionTest[T <: AnyVal](module: IntCompanion[T]) extends Mo
   protected def genInvalidInt: Gen[Int]
 
   test("fromInt (valid)") {
-    forAll(genValidInt) { (int: Int) =>
+    forAll(genValidInt) { int: Int =>
       assert(module.fromInt(int).isDefined)
     }
   }
 
   test("fromInt (invalid)") {
-    forAll(genInvalidInt) { (int: Int) =>
+    forAll(genInvalidInt) { int: Int =>
       assert(module.fromInt(int).isEmpty)
     }
   }
 
   test("toInt") {
-    forAll(genValidInt) { (int: Int) =>
+    forAll(genValidInt) { int: Int =>
       assert(module.toInt(module.fromInt(int).get) == int)
     }
   }

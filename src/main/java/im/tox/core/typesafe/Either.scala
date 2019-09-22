@@ -2,21 +2,21 @@ package im.tox.core.typesafe
 
 sealed abstract class \/[A, B] extends Product with Serializable {
   /** Bind through the right of this disjunction. */
-  def flatMap[D](g: B => (A \/ D)): (A \/ D) =
+  def flatMap[D](g: B => (A \/ D)): A \/ D =
     this match {
       case a @ -\/(_) => a.coerceRight
       case \/-(b)     => g(b)
     }
 
   /** Map on the right of this disjunction. */
-  def map[D](g: B => D): (A \/ D) =
+  def map[D](g: B => D): A \/ D =
     this match {
       case \/-(b)     => \/-(g(b))
       case a @ -\/(_) => a.coerceRight
     }
 
   /** Flip the left/right values in this disjunction. Alias for `unary_~` */
-  def swap: (B \/ A) =
+  def swap: B \/ A =
     this match {
       case -\/(a) => \/-(a)
       case \/-(b) => -\/(b)

@@ -5,7 +5,7 @@ import im.tox.core.error.CoreError.CoreException
 import im.tox.core.typesafe.{ -\/, \/, \/- }
 
 sealed abstract class CoreError {
-  val exception: CoreException = new CoreException(this)
+  val exception: CoreException = CoreException(this)
 }
 
 object CoreError {

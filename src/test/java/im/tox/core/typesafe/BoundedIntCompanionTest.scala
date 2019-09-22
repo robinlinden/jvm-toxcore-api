@@ -4,8 +4,8 @@ import org.scalacheck.Gen
 
 abstract class BoundedIntCompanionTest[T <: AnyVal](module: BoundedIntCompanion[T]) extends IntCompanionTest(module) {
 
-  override protected final def genValidInt = Gen.choose(module.MinValue, module.MaxValue)
-  override protected final def genInvalidInt = {
+  override protected final def genValidInt: Gen[Int] = Gen.choose(module.MinValue, module.MaxValue)
+  override protected final def genInvalidInt: Gen[Int] = {
     val tooSmallGen = if (module.MinValue > Int.MinValue) {
       Some(Gen.choose(Int.MinValue, module.MinValue - 1))
     } else {

@@ -21,19 +21,19 @@ abstract class KeyCompanionTest[T <: AnyVal, S <: Security](
   }
 
   test("toString") {
-    forAll { (self: T) =>
+    forAll { self: T =>
       assert(companion.equals(companion.fromHexString(self.toString).toOption.get, self))
     }
   }
 
   test("toHexString") {
-    forAll { (self: T) =>
+    forAll { self: T =>
       assert(companion.equals(companion.fromHexString(companion.toHexString(self)).toOption.get, self))
     }
   }
 
   test("optimised toHexString") {
-    forAll { (self: T) =>
+    forAll { self: T =>
       assert(companion.toHexStringOpt(self) == companion.toHexStringRef(self))
     }
   }

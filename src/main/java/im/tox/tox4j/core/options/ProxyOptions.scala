@@ -33,7 +33,7 @@ sealed trait ProxyOptions {
  */
 object ProxyOptions {
 
-  private def requireValidUInt16(port: Int) = {
+  private def requireValidUInt16(port: Int): Unit = {
     require(port >= 0 && port <= 0xffff, "Proxy port should be a valid 16 bit positive integer")
   }
 
